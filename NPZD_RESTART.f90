@@ -1,8 +1,8 @@
-subroutine NPZD_RESTART(time)
+subroutine NPZD_RESTART(XITEM,YITEM)
 
 use NPZD_input
 implicit none
-integer :: time,j
+integer :: time,j,XITEM,YITEM
 character(len=20) :: tt
  
 !write(*,*) RESTART_ON

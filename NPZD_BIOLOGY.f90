@@ -1,4 +1,4 @@
-subroutine NPZD_BIOLOGY(i)
+subroutine NPZD_BIOLOGY(XITEM,YITEM)
 ! Description:
 ! a 1D NPZD model by using RK4 method
 !
@@ -9,7 +9,7 @@ subroutine NPZD_BIOLOGY(i)
 use NPZD_input
 use bio_parameter
 implicit none
-integer :: i,j,time
+integer :: i,j,XITEM,YITEM
 real(kind=8) :: N,P,Z,D
 !real(kind=8)   :: dt
 ! inner data
@@ -22,57 +22,14 @@ real(kind=8) :: K2N,K2P,K2Z,K2D
 real(kind=8) :: K3N,K3P,K3Z,K3D
 real(kind=8) :: K4N,K4P,K4Z,K4D
 
-time = i
 !RK4 method
-
-
-!COUNTER=1
-!array_N(COUNTER)=N
-!array_P(COUNTER)=P
-!array_Z(COUNTER)=Z
-!array_D(COUNTER)=D
-
-!write(*,*) "NPZD model start"
-
-!Write(*,*),"############BIOLOGY PROCESS###################"
-!Write(*,*),"TIME=",TSTART+(COUNTER-1)*dt,"N=",N
-!Write(*,*),"TIME=",TSTART+(COUNTER-1)*dt,"P=",P
-!Write(*,*),"TIME=",TSTART+(COUNTER-1)*dt,"Z=",Z
-!Write(*,*),"TIME=",TSTART+(COUNTER-1)*dt,"D=",D
-!Write(*,*),"TIME=",TSTART+(COUNTER-1)*dt,"SUM=",N+P+Z+D
-!write(*,*),"############BIOLOGY PROCESS###################"
-
-
-! do i=1,ITEM
-!write(*,*),"i=",i
-!write(*,*),"TEND=",TEND
-!COUNTER=COUNTER+1
-
-!CONTROL PARTION
-
-!if (N.le.0) then
-!N=0.0
-!end if
-
-!if (P.le.0) then
-!P=0.0
-!end if
-
-!if (Z.le.0) then
-!Z=0.0
-!end if
-
-!if (D.le.0) then
-!D=0.0
-!end if
-
 do j=1,LAYER
-    N=array_N(time,j)
-    P=array_P(time,j)
-    Z=array_Z(time,j)
-    D=array_D(time,j)
-    T=array_T(floor(1+(time-1)*dt),j)
-    L=array_L(floor(1+(time-1)*dt),j)
+    N=array_N(XITEM,YITEM,j)
+    P=array_P(XITEM,YITEM,j)
+    Z=array_Z(XITEM,YITEM,j)
+    D=array_D(XITEM,YITEM,j)
+    T=array_T(XITEM,YITEM,j)
+    L=array_L(XITEM,YITEM,j)
   !   T=array_T(floor(1+((time-1)/86400)*dt),j)
   !    L=array_L(floor(1+((time-1)/86400)*dt),j)
 Write(*,*) "T=",T,"L=",L
@@ -188,10 +145,10 @@ D=D+(dt/6)*(K1D+2*K2D+2*K3D+K4D)
 Call Datacontrol(N,P,Z,D)
 
 
-   array_N(time+1,j)=N
-   array_P(time+1,j)=P
-   array_Z(time+1,j)=Z
-   array_D(time+1,j)=D
+   array_N(XITEM,YITEM,j)=N
+   array_P(XITEM,YITEM,j)=P
+   array_Z(XITEM,YITEM,j)=Z
+   array_D(XITEM,YITEM,j)=D
 
 
   

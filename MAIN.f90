@@ -8,18 +8,20 @@ real(kind=8) :: N,P,Z,D
 
 write(*,*) "NPZD model start"
 write(*,*) "Start to read input file"
-call NPZD_READ
+!call NPZD_READ
 
-do i=1,ITEM
-call NPZD_BIOLOGY(i)
+ do i =1,XTOTAL
+  do j=1,YTOTAL
+!do i=1,ITEM
+call NPZD_BIOLOGY(i,j)
 
-call NPZD_PHYSICS(i)
-
-call NPZD_RESTART(i)
+call NPZD_PHYSICS(i,j)
+ 
+!call NPZD_RESTART(i,j) !can't be used in couple 
 
 !call NPZD_BIOLOGY(i)
 
-end do
+!end do
 
 !write program
 

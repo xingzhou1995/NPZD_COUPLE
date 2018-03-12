@@ -6,7 +6,7 @@ subroutine light_decay()
 use NPZD_INPUT
 use phy_parameter
 implicit none
-integer :: i,j
+integer :: i,j,k
 real(kind=8) :: tmp
 
 ! no decay
@@ -18,11 +18,12 @@ real(kind=8) :: tmp
 !end do
 
 ! decay chen
- do j=1,DDAY+1
-  do i=1,LAYER
- array_L(j,i)=array_L(j,1)*transferlight
- tmp=array_L(j,1)*exp(-kext*(i-1)*dh)
- array_L(j,i)=tmp
+ do i=1,XTOTAL
+  do j=1,YTOTAL
+   do k=1,LAYER
+ array_L(i,j,1)=array_L(i,j,1)*transferlight
+ tmp=array_L(i,j,1)*exp(-kext*(k-1)*dh)
+ array_L(i,j,k)=tmp
 !write(*,*) array_L(j,i)
  end do
 end do
@@ -30,12 +31,12 @@ end do
 
 end subroutine
 
-subroutine sinking(time)
+subroutine sinking(XITEM,YITEM)
 
 use NPZD_input
 use phy_parameter
 implicit none
-integer :: j,time
+integer :: j,XITEM,YITEM
 !,sink_controln,sink_controlp,sink_controlz,sink_controld
 real(kind=8) :: N1(LAYER),P1(LAYER),Z1(LAYER),D1(LAYER)
 real(kind=8) :: N2(LAYER),P2(LAYER),Z2(LAYER),D2(LAYER)
@@ -50,13 +51,13 @@ real(kind=8) :: N2(LAYER),P2(LAYER),Z2(LAYER),D2(LAYER)
 
 !read data
 do j=1,LAYER
-N1(j)=array_N(time,j)
+N1(j)=array_N(XITEM,YITEM,j)
 !N1(j)=array_N(time+1,j)
-P1(j)=array_P(time,j)
+P1(j)=array_P(XITEM,YITEM,j)
 !P1(j)=array_P(time+1,j)
-Z1(j)=array_Z(time,j)
+Z1(j)=array_Z(XITEM,YITEM,j)
 !Z1(j)=array_Z(time+1,j)
-D1(j)=array_D(time,j)
+D1(j)=array_D(XITEM,YITEM,j)
 !D1(j)=array_D(time+1,j)
 end do
 
@@ -196,10 +197,10 @@ write(*,*) "SUM=",sum(N2)+sum(P2)+sum(Z2)+sum(D2)
 !write(*,*) "Z3=",Z3
 do j=1,LAYER
 
-   array_N(time+1,j)=N2(j)
-   array_P(time+1,j)=P2(j)
-   array_Z(time+1,j)=Z2(j)
-   array_D(time+1,j)=D2(j)
+   array_N(XITEM,YITEM,j)=N2(j)
+   array_P(XITEM,YITEM,j)=P2(j)
+   array_Z(XITEM,YITEM,j)=Z2(j)
+   array_D(XITEM,YITEM,j)=D2(j)
 end do
 
 
@@ -274,12 +275,11 @@ end subroutine
 
 
 
-subroutine mixing(time)
+subroutine mixing(XITEM,YITEM)
 use NPZD_input
 use phy_parameter
 implicit none
-integer :: i,j
-integer :: time
+integer :: i,j,XITEM,YITEM
 !real(kind=8) :: mix_dt
 real(kind=8) ::  S_N,S_P,S_Z,S_D
 real(kind=8) ::  BELOW_N(LAYER),BELOW_P(LAYER),BELOW_Z(LAYER),BELOW_D(LAYER)
@@ -291,10 +291,10 @@ real(kind=8) ::  N2(LAYER),P2(LAYER),Z2(LAYER),D2(lAYER)
 
 do i=1,LAYER
 
-N1(i)=array_N(time+1,i)
-P1(i)=array_P(time+1,i)
-Z1(i)=array_Z(time+1,i)
-D1(i)=array_D(time+1,i)
+N1(i)=array_N(XITEM,YITEM,i)
+P1(i)=array_P(XITEM,YITEM,i)
+Z1(i)=array_Z(XITEM,YITEM,i)
+D1(i)=array_D(XITEM,YITEM,i)
 
 !debug option
 
@@ -403,10 +403,10 @@ call solve_tradiag(BELOW_D,MAIN_D,ABOVE_D,D1,D2,LAYER)
 
 do j=1,LAYER
 
-   array_N(time+1,j)=N2(j)
-   array_P(time+1,j)=P2(j)
-   array_Z(time+1,j)=Z2(j)
-   array_D(time+1,j)=D2(j)
+   array_N(XITEM,YITEM,j)=N2(j)
+   array_P(XITEM,YITEM,j)=P2(j)
+   array_Z(XITEM,YITEM,j)=Z2(j)
+   array_D(XITEM,YITEM,j)=D2(j)
 end do
 
 write(*,*) "##############mixing##########"
