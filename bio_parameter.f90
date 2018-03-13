@@ -8,7 +8,7 @@ real(kind=8) :: gama  = 0.8 !0.3                         ! Regeneration of Z pre
  real(kind=8) :: r     = 0.01!0.01 !0.1 !0.01  !/day                  ! luo option
 !real(kind=8) :: dd     = 1.0   !m^3/gC/day            ! Higher Predation on Z
 real(kind=8) :: dd     = 0.02 !0.2 !0.02  !/day                  !luo option
-real(kind=8) :: k     = 0.05  !/day                  ! Cross-thermocline exchange rate
+!real(kind=8) :: k     = 0.05  !/day                  ! Cross-thermocline exchange rate
 real(kind=8) :: s     = 0.04  !/day                  ! P sink loss rate
 real(kind=8) :: N0    = 0.6   !gC/m^3                ! N concentration below mixed layer
 real(kind=8) :: phi   = 0.1   !/day                  ! D remineralization rate

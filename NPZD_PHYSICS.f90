@@ -1,5 +1,6 @@
 subroutine NPZD_PHYSICS(XITEM,YITEM)
 
+use NPZD_CONVEY
 use NPZD_input
 use phy_parameter
 use phy_process

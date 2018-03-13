@@ -5,7 +5,7 @@ subroutine NPZD_BIOLOGY(XITEM,YITEM)
 ! Usage:
 !
 !
-
+use NPZD_CONVEY
 use NPZD_input
 use bio_parameter
 implicit none
@@ -23,7 +23,7 @@ real(kind=8) :: K3N,K3P,K3Z,K3D
 real(kind=8) :: K4N,K4P,K4Z,K4D
 
 !RK4 method
-do j=1,LAYER
+do j=1,LAYER(XITEM,YITEM)
     N=array_N(XITEM,YITEM,j)
     P=array_P(XITEM,YITEM,j)
     Z=array_Z(XITEM,YITEM,j)
@@ -35,11 +35,11 @@ do j=1,LAYER
 Write(*,*) "T=",T,"L=",L
 
 Write(*,*) "#############BIOLOGY PROCESS##################"
-Write(*,*) "TIME=",TSTART+(time-1)*dt,"LAYER=",j,"N=",N
-Write(*,*) "TIME=",TSTART+(time-1)*dt,"LAYER=",j,"P=",P
-Write(*,*) "TIME=",TSTART+(time-1)*dt,"LAYER=",j,"Z=",Z
-Write(*,*) "TIME=",TSTART+(time-1)*dt,"LAYER=",j,"D=",D
-Write(*,*) "TIME=",TSTART+(time-1)*dt,"LAYER=",j,"SUM=",N+P+Z+D
+!Write(*,*) "TIME=",TSTART+(time-1)*dt,"LAYER=",j,"N=",N
+!Write(*,*) "TIME=",TSTART+(time-1)*dt,"LAYER=",j,"P=",P
+!Write(*,*) "TIME=",TSTART+(time-1)*dt,"LAYER=",j,"Z=",Z
+!Write(*,*) "TIME=",TSTART+(time-1)*dt,"LAYER=",j,"D=",D
+!Write(*,*) "TIME=",TSTART+(time-1)*dt,"LAYER=",j,"SUM=",N+P+Z+D
 write(*,*) "#############BIOLOGY PROCESS##################"
 
 
