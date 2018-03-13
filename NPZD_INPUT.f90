@@ -1,6 +1,8 @@
 module  NPZD_input
 
 !time and space
+implicit none
+save
 integer :: ITEM    ! how many iteration steps
 !integer :: DDAY    ! how many days 
 ! NPZD_time and space

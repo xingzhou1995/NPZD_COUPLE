@@ -1,7 +1,8 @@
 module NPZD_CONVEY
 
 !this module using for convey the data from PCPM to NPZD model
-
+implicit none
+save
 integer :: XTOTAL  ! how many grids in X direction
 integer :: YTOTAL  ! how many grids in Y direction
 integer,allocatable :: LAYER(:,:)   ! how many layers in depth
