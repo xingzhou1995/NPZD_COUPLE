@@ -23,7 +23,7 @@ real(kind=8) :: K3N,K3P,K3Z,K3D
 real(kind=8) :: K4N,K4P,K4Z,K4D
 
 !RK4 method
-do j=1,LAYER(XITEM,YITEM)
+do j=1,LAYER
     N=array_N(XITEM,YITEM,j)
     P=array_P(XITEM,YITEM,j)
     Z=array_Z(XITEM,YITEM,j)

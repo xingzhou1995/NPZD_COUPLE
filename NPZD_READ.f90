@@ -62,7 +62,7 @@ ITEM=ceiling(ITEM1)
 
 do i=1,XTOTAL
  do j=1,YTOTAL
-  dh(i,j)=DEPTH(i,j)/LAYER(i,j)
+  dh(i,j)=DEPTH(i,j)/LAYER
  end do
 end do
 
