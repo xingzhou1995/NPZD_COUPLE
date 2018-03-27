@@ -11,7 +11,7 @@ implicit none
 real(kind=8) :: START_TIME,END_TIME,TIME_STEP
 integer :: i,j,error
 real :: ITEM1
-namelist / NPZD_SELECT/ BIO_MODEL
+namelist / NPZD_SELECT/ BIO_MODEL,NPZD_SECONDS
 !namelist / NPZD_IO/ INPDIR,OUTDIR
 !namelist / NPZD_RESTART/ RESTART_ON,RESTART_INTERVAL
 !namelist / NPZD_data/ NPZD_in,NPZD_T_in,NPZD_L_in,NPZD_out
@@ -127,6 +127,11 @@ call light_decay()
 
 !write(*,*) array_L(2,1)
 !close(66)
+
+
+if (NPZD_SECONDS) then
+ call day2seconds()
+end if
 
 
 
