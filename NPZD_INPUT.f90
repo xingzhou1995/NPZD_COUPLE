@@ -45,15 +45,15 @@ upmax=upmax/86400   !maxium growth rate for P
 
 !phy parameter
  !diffusion coefficent
-A_N=A_N/86400
-A_P=A_P/86400
-A_Z=A_Z/86400
-A_D=A_D/86400
+!A_N=A_N/86400
+!A_P=A_P/86400
+!A_Z=A_Z/86400
+!A_D=A_D/86400
  !sinking velocity
-Wn=Wn/86400
-Wp=Wp/86400
-Wz=Wz/86400
-Wd=Wd/86400
+!Wn=Wn/86400
+!Wp=Wp/86400
+!Wz=Wz/86400
+!Wd=Wd/86400
 end subroutine
 
 

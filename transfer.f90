@@ -4,7 +4,7 @@ subroutine transfer (time)
 use PCPM_CONVEY
 use NPZD_CONVEY
 implicit none
-integer :: real(kind=8) time
+integer :: time
 integer :: i,j,k
 
 
@@ -15,43 +15,43 @@ LAYER  = size(PCPM_N,3) !z
 
 if(.not.allocated( array_N)) then 
 allocate(array_N(XTOTAL,YTOTAL,LAYER))
-write(*,*),"ALLOCATED N Array Successful!"
+write(*,*) "ALLOCATED N Array Successful!"
 end if
 
 if(.not.allocated( array_P)) then
 allocate(array_P(XTOTAL,YTOTAL,LAYER))
-write(*,*),"ALLOCATED P Array Successful!"
+write(*,*) "ALLOCATED P Array Successful!"
 end if
 
 if(.not.allocated( array_Z)) then
 allocate(array_Z(XTOTAL,YTOTAL,LAYER))
-write(*,*),"ALLOCATED Z Array Successful!"
+write(*,*) "ALLOCATED Z Array Successful!"
 end if
 
 if(.not.allocated( array_D)) then
 allocate(array_D(XTOTAL,YTOTAL,LAYER))
-write(*,*),"ALLOCATED D Array Successful!"
+write(*,*) "ALLOCATED D Array Successful!"
 end if
 
 if(.not.allocated( array_T)) then
 allocate(array_T(XTOTAL,YTOTAL,LAYER))
-write(*,*),"ALLOCATED T Array Successful!"
+write(*,*) "ALLOCATED T Array Successful!"
 end if
 
 if(.not.allocated( array_L)) then
 allocate(array_L(XTOTAL,YTOTAL,LAYER))
-write(*,*),"ALLOCATED L Array Successful!"
+write(*,*) "ALLOCATED L Array Successful!"
 end if
 
-if(.not.allocated( array_KV)) then
+if(.not.allocated( KV)) then
 allocate(KV(XTOTAL,YTOTAL))
-write(*,*),"ALLOCATED KV Array Successful!"
+write(*,*) "ALLOCATED KV Array Successful!"
 end if
 
 
-if(.not.allocated( array_DEPTH)) then
-allocate(DEPTH(XTOAL,YTOTAL))
-write(*,*),"ALLOCATED DEPTH Array Successful!"
+if(.not.allocated( DEPTH)) then
+allocate(DEPTH(XTOtAL,YTOTAL))
+write(*,*) "ALLOCATED DEPTH Array Successful!"
 end if
 
 !Transfer data from PCPM to NPZD

@@ -21,5 +21,6 @@ real(kind=8),allocatable :: KV(:,:)     ! diffuse coefficent
 !depth
 real(kind=8),allocatable :: DEPTH(:,:)
 
+Integer :: NPZDREAD_CONTROL = 1 
 
 end module 

@@ -35,7 +35,7 @@ dt=TIME_STEP
 !write(*,*) TSTART
 !write(*,*) TEND
 !write(*,*) dt
-if (TEND .lt. TSTART) then
+if (TEND .le. TSTART) then
 write(*,*) "error  NPZD_time,program terminated"
 stop
 !exit
@@ -44,29 +44,22 @@ ITEM1=(TEND-TSTART)/dt
 !DDAY =(TEND-TSTART)!/86400 ! in second divide 86400
 !write(*,*),"ITEM1=",ITEM1
 ITEM=ceiling(ITEM1)
-!write(*,*),"ITEM=",ITEM
-
-!write(*,*) NPZD_in
-!write(*,*) trim(INPDIR)//trim(NPZD_in)
-!open(44,file=(trim(INPDIR)//trim(NPZD_in)))
-!error = 0
-!LAYER = 0
-!write(*,*),"LAYER-",LAYER
-!do while( error.eq.0)
-!read(44,*,iostat=error)
-!LAYER=LAYER+1
-!end do
-!LAYER=LAYER-1
-!rewind(44)
+write(*,*) "ITEM=",ITEM
 
 
+if(.not.allocated( dh)) then
+allocate(dh(XTOTAL,YTOTAL))
+write(*,*) "ALLOCATED dh Array Successful!"
+end if
+
+!calculate dh
 do i=1,XTOTAL
  do j=1,YTOTAL
   dh(i,j)=DEPTH(i,j)/LAYER
  end do
 end do
 
-
+write(*,*) "test 1 success"
 
 
 
@@ -76,23 +69,6 @@ end do
 !write(*,*) " How many days=",DDAY
 write(*,*) "Iteration Number=",ITEM
 !write(*,*) "LAYER=",LAYER
-
-
-!allocate(array_N(ITEM+1,LAYER))
-!allocate(array_P(ITEM+1,LAYER))
-!allocate(array_Z(ITEM+1,LAYER))
-!allocate(array_D(ITEM+1,LAYER))
-!allocate(array_T(DDAY+1,LAYER))
-!allocate(array_L(DDAY+1,LAYER))
-
-!allocate(array_N(XTOTAL,YTOTAL,LAYER))
-!allocate(array_P(XTOTAL,YTOTAL,LAYER))
-!allocate(array_Z(XTOTAL,YTOTAL,LAYER))
-!allocate(array_D(XTOTAL,YTOTAL,LAYER))
-!allocate(array_T(XTOTAL,YTOTAL,LAYER))
-!allocate(array_L(XTOTAL,YTOTAL,LAYER))
-!allocate(KV(XTOTAL,YTOTAL))
-!write(*,*) "Allocate successful"
 
 ! read initial field
 
@@ -125,8 +101,6 @@ write(*,*) "Iteration Number=",ITEM
 
 call light_decay()
 
-!write(*,*) array_L(2,1)
-!close(66)
 
 
 if (NPZD_SECONDS) then
@@ -135,5 +109,5 @@ end if
 
 
 
-!write(*,*) "L read successful"
+write(*,*) "L read successful"
 end subroutine
